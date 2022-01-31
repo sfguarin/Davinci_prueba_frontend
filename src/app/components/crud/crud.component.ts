@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from "../../services/user.service";
 //importación de mi modelo para la recepción de datos de mi usuario
 import { UserInterface } from "../../models/user-interface";
+import { Separador } from 'src/app/models/separador';
 
 
 
@@ -21,12 +22,19 @@ export class CRUDComponent implements OnInit {
     this.uploadedFiles = [];
    }
 
+   separadores: any[]=[];
   //inicialización de mi crud, aparece antes de realizar cualquier acción
   ngOnInit(): void {
     //llamado a mi servicio, con el envio de parametros y subscribe pendiente de cambios
     this.crudService.GetUsers().subscribe((res:any) => {
       this.Usuarios = res;
     })
+
+    for (let item in Separador){
+      if (isNaN(Number(item))){
+        this.separadores.push({text: item, value: Separador[item]});
+      }
+    }
 
   }
 
@@ -37,21 +45,22 @@ export class CRUDComponent implements OnInit {
   telefono: string = "";
   direccion: string = "";
   campana: string = "";
+  separador: Separador = 1;
   //Almacenamiento de usuarios de mi base de datos con su modelo
   Usuarios: UserInterface[] = [];
 
   onUpload(){
     let formData = new FormData;
-    console.log(this.uploadedFiles);
     for (let i=0; i<this.uploadedFiles.length; i++){
       formData.append("uploads[]", this.uploadedFiles[i], this.uploadedFiles[i].name);
     }
 
-    console.log("aqui",formData);
-
     this.crudService.uploadFile(formData).subscribe((res)=>{
       console.log("Response",res);
     })
+
+    window.location.reload();
+
   }
 
   onFileChange(e:any){
@@ -118,8 +127,5 @@ export class CRUDComponent implements OnInit {
 
   }
 
-  // //Cerrar sesión
-  // CerrarSesion() {
-  //   this.crudService.logout();
-  // }
+
 }

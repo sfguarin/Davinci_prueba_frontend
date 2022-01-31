@@ -9,12 +9,12 @@ import { LoginComponent } from "./components/login/login.component";
 const routes: Routes = [
   {
     //Componente HOME
-    path: '',
+    path: 'home',
     component: HomeComponent
   },
   {
     //Componente CRUD
-    path: 'crud',
+    path: '',
     component: CRUDComponent
   },
   {

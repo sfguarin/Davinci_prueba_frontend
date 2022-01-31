@@ -21,7 +21,6 @@ export class UserService {
 
   uploadFile(formData:FormData){
     const url = 'http://localhost:3000/addCSV';
-    console.log(formData)
     return this.http.post(url, formData);
   }
 

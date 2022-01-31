@@ -50,11 +50,19 @@
 
                 <div class="form-group"> 
                     <input [(ngModel)]="campana" name="campana"  placeholder="campana" type="text" class="form-control" >
-                </div>                
-
-
+                </div>
+                
+                
+                
                 <button (click)="addUser()" type="submit" class="btn btn-primary btn-block">Guardar Usuario</button>
                 <button (click)="updateUser()" type="submit" class="btn btn-warning btn-block">Guardar Cambios</button>
+                <h2></h2>
+                <div class="form-group">
+                    <label for="separador">Separador</label>
+                    <select [(ngModel)]="separador" class="form-control" id="separador" name="separador">
+                        <option *ngFor="let separador of separadores" value="separador.value">{{separador.text}}</option>
+                    </select>
+                </div>
                 <!-- <button id="btnUpload" (click)="onUpload()" type="File" class="btn btn-success btn-block">Cargar CSV</button> -->
                 <div class="input-group">
                     <div class="input-group-prepend">
