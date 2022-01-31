@@ -1,0 +1,103 @@
+
+<!-- Barra de navegación con bootstrap -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <!-- imagen barra navegación -->
+            <img src="https://soporte.davincitech.co/logo.php" width="120" height="30" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <button (click)="CerrarSesion()" type="button" class="btn btn-info">Cerrar Sesion</button>
+
+                </li>
+
+            </ul>
+
+        </div> -->
+    </div>
+
+</nav>
+
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-4">
+            <!--Formulario -->
+            <form>
+                <div class="form-group">
+                    <input [(ngModel)]="nombre" name="nombre" placeholder="nombre" type="text" class="form-control"   aria-describedby="emailHelp">
+                </div>
+
+                <div class="form-group">
+                    <input  [(ngModel)]="apellido" name="apellido" placeholder="apellido" type="text" class="form-control" >
+                </div>
+
+                <div class="form-group"> 
+                    <input [(ngModel)]="telefono" name="telefono"  placeholder="telefono" type="text" class="form-control" >
+                </div>
+
+                <div class="form-group"> 
+                    <input [(ngModel)]="direccion" name="direccion"  placeholder="direccion" type="text" class="form-control" >
+                </div>
+
+                <div class="form-group"> 
+                    <input [(ngModel)]="campana" name="campana"  placeholder="campana" type="text" class="form-control" >
+                </div>                
+
+
+                <button (click)="addUser()" type="submit" class="btn btn-primary btn-block">Guardar Usuario</button>
+                <button (click)="updateUser()" type="submit" class="btn btn-warning btn-block">Guardar Cambios</button>
+                <!-- <button id="btnUpload" (click)="onUpload()" type="File" class="btn btn-success btn-block">Cargar CSV</button> -->
+                <div class="input-group">
+                    <div class="input-group-prepend">
+
+                       <button id="btnUpload" (click)="onUpload()" type="File" class="btn btn-success btn-block">Cargar CSV</button>
+
+                    </div>
+                    <div class="custom-file">
+                        <form action="">
+                            <input type="file" class="custom-file-input" id="input-custom-file" (change)="onFileChange($event)">
+                        </form>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+        <!-- vista en tarjetas de usuarios -->
+        <div class="col-8">
+            <div class="row">
+
+                <div *ngFor="let usuario of Usuarios" class="col-4">
+                    <div class="card bg-light mb-3">
+                        <div class="card-header">{{usuario.campana}}</div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{usuario.nombre}}</h5>
+                            <h5 class="card-title">{{usuario.apellido}}</h5>
+                            <h5 class="card-title">{{usuario.telefono}}</h5>
+                            <h5 class="card-title">{{usuario.direccion}}</h5>
+                          
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit"
+                               (click)="getDataUser(usuario.code,usuario.nombre,usuario.apellido,usuario.telefono,usuario.direccion,usuario.campana)"
+                                class="btn btn-warning btn-block">Editar Usuario</button>
+                            <button (click)="deleteUser(usuario.code)" type="submit"  class="btn btn-danger btn-block">Borrar
+                                Usuario</button>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
